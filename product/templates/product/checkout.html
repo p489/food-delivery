@@ -1,0 +1,89 @@
+{% extends 'product/base.html' %}
+{% block carttotal %}
+<p id="cart-total">{{ cartItems }}</p>
+{% endblock %}
+{% block body %}
+     <div class="row mt-5 pt-5">
+		<div class="col-lg-6">
+			<div id="alert" class="alert alert-danger hidden">Please fill in all inputs correctly</div>
+			<div class="box-element" id="form-wrapper">
+				<form id="form">
+				
+					<div id="shipping-info">
+						<hr>
+						<p>Shipping Information:</p>
+						<hr>
+						<div class="form-field">
+							<input id="input-1" required class="form-control" type="text" name="address" placeholder="Address..">
+						</div>
+						<div class="form-field">
+							<input id="input-2" required class="form-control" type="text" name="city" placeholder="City..">
+						</div>
+						<div class="form-field">
+							<input id="input-3" required class="form-control" type="text" name="state" placeholder="State..">
+						</div>
+						<div class="form-field">
+							<input id="input-4" required class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+						</div>
+						<div class="form-field">
+							<input id="input-5" required maxlength="10" class="form-control" type="text" name="country" placeholder="Phone number">
+						</div>
+					</div>
+
+					<hr>
+					
+				</form>
+				<button id="continue" class="btn btn-info btn-block" >Continue</button>
+			</div>
+
+			<br>
+			<div class="box-element hidden" id="place-order">
+				<small>Are you sure you want to place this order?</small>
+				<a href="{% url 'confirm_order' %}" class="btn btn-success">Place Order</a>
+			</div>
+			
+		</div>
+
+		<div class="col-lg-6">
+			<div class="box-element">
+				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<hr>
+				<h3>Order Summary</h3>
+				<hr>
+				{% for item in items %}
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{{item.product.thing_photo.url}}"></div>
+					<div style="flex:2"><p>{{item.product.thing_title}}</p></div>
+					<div style="flex:1"><p>${{item.product.thing_price|floatformat:2}}</p></div>
+					<div style="flex:1"><p>x{{item.quantity}}</p></div>
+				</div>
+				{% endfor %}
+				<h5>Items:   {{order.get_cart_items}}</h5>
+				<h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	var cont = document.getElementById("continue")	
+	var place_order = document.getElementById("place-order")
+	var alert = document.getElementById("alert")
+	cont.addEventListener("click",function(){
+		var input_1 = document.getElementById("input-1").value;
+		var input_2 = document.getElementById("input-2").value;
+		var input_3 = document.getElementById("input-3").value;
+		var input_4 = parseInt(document.getElementById("input-4").value);
+		var input_5 = parseInt(document.getElementById("input-5").value);
+
+		if(input_1 === "" || input_2 === "" || input_3 === "" || !Number.isInteger(input_4) || !Number.isInteger(input_5) ) {
+			alert.classList.remove("hidden")
+		}else{
+			alert.classList.add("hidden");
+			place_order.classList.remove("hidden")
+
+		}
+	
+	})
+
+</script>
+{% endblock body %}

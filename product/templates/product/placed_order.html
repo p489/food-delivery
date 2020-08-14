@@ -1,0 +1,17 @@
+{% extends 'product/base.html' %}
+{% block carttotal %}
+<p id="cart-total">0</p>
+{% endblock %}
+{% block body %}
+<div class="container">
+	<div class="jumbotron" style="margin-top:100px;">
+		<h1 class="display-4 text-success">Order Placed!!</h1>
+		<p class="lead">Your order has been placed successfully, you can expect delivery within half-an-hour!!</p>
+		<hr class="my-4">
+		
+		<p class="lead">
+		<a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Back to menu</a>
+		</p>
+	</div>
+</div>
+{% endblock %}

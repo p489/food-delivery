@@ -5,25 +5,25 @@
 {% block body %}
      <div class="row mt-5 pt-5">
 		<div class="col-lg-6">
-			<div id="alert" class="alert alert-danger hidden">Please fill in all inputs correctly</div>
+			<div id="alert" class="alert alert-danger hidden">Please fill in all inputs correctly.</div>
 			<div class="box-element" id="form-wrapper">
 				<form id="form">
 				
 					<div id="shipping-info">
 						<hr>
-						<p>Shipping Information:</p>
+						<p class="text-dark"><strong>Information</strong></p>
 						<hr>
 						<div class="form-field">
-							<input id="input-1" required class="form-control" type="text" name="address" placeholder="Address..">
+							<input id="input-1" required class="form-control" type="text" name="address" placeholder="Enter your addrress">
 						</div>
 						<div class="form-field">
-							<input id="input-2" required class="form-control" type="text" name="city" placeholder="City..">
+							<input id="input-2" required class="form-control" type="text" name="city" placeholder="Enter your city">
 						</div>
 						<div class="form-field">
-							<input id="input-3" required class="form-control" type="text" name="state" placeholder="State..">
+							<input id="input-3" required class="form-control" type="text" name="state" placeholder="State">
 						</div>
 						<div class="form-field">
-							<input id="input-4" required class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+							<input id="input-4" required class="form-control" type="text" name="zipcode" placeholder="Pin Code">
 						</div>
 						<div class="form-field">
 							<input id="input-5" required maxlength="10" class="form-control" type="text" name="country" placeholder="Phone number">
@@ -33,7 +33,7 @@
 					<hr>
 					
 				</form>
-				<button id="continue" class="btn btn-info btn-block" >Continue</button>
+				<button id="continue" class="btn btn-info btn-block" >Proceed Further</button>
 			</div>
 
 			<br>
@@ -46,15 +46,15 @@
 
 		<div class="col-lg-6">
 			<div class="box-element">
-				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<a  class="btn btn-outline-info" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
 				<hr>
-				<h3>Order Summary</h3>
+				<h3>Your Order(s)</h3>
 				<hr>
 				{% for item in items %}
 				<div class="cart-row">
 					<div style="flex:2"><img class="row-image" src="{{item.product.thing_photo.url}}"></div>
 					<div style="flex:2"><p>{{item.product.thing_title}}</p></div>
-					<div style="flex:1"><p>${{item.product.thing_price|floatformat:2}}</p></div>
+					<div style="flex:1"><p>Rs {{item.product.thing_price|floatformat:2}}</p></div>
 					<div style="flex:1"><p>x{{item.quantity}}</p></div>
 				</div>
 				{% endfor %}

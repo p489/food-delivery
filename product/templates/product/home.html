@@ -12,18 +12,19 @@ Welcome!!
     {% for thing in things %}
     <div class="col-12 col-sm-6 col-lg-4 mt-5 pt-5">
         <div class="card " style="width: 18rem;">
-            <img class="card-img-top" src="{{ thing.thing_photo.url }}" alt="Card image cap" style="height:15rem;">
+            <img class="card-img-top" src="{{ thing.thing_photo.url }}" alt="Card image cap" style="height:17rem;">
             <div class="card-body">
               <h5 class="card-title">{{ thing.thing_title }}</h5>
               <p class="card-text"> {{ thing.thing_description }}</p>
               <hr>
               {% if user.is_authenticated %}
-              <button data-action="add" data-product = "{{ thing.id }}" class="btn btn-outline-secondary update-cart" id="addtocart">Add To Cart</button>
-              <h3 class="float-right">${{ thing.thing_price }}</h3>
+              <button data-action="add" data-product = "{{ thing.id }}" class="btn btn-outline-success update-cart" id="addtocart">Add To Cart <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+             
+<br> <hr>              <h3 >Rs {{ thing.thing_price }}</h3>
               
               {% else %}
-              <p>You need to <a href="{% url 'register' %}">register</a> for ordering</p>
-              <h3 >${{ thing.thing_price }}</h3>
+              <p><a href="{% url 'register' %}">Register</a> to order</p>
+              <h3 >Rs {{ thing.thing_price }}</h3>
 
               {% endif %}
             </div>

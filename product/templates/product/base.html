@@ -11,6 +11,7 @@
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link  rel="stylesheet" href ="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap" rel="stylesheet">
     <script type="text/javascript">
       var user = '{{request.user}}'
       function getToken(name) {
@@ -32,12 +33,14 @@
     </script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    
+
   </head>
 <body>
     
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'home' %}">Zoggy!</a>
+          <a class="navbar-brand mr-4" href="{% url 'home' %}">Foodie</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,9 +50,8 @@
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
-              <a href="{% url 'cart' %}" class="mt-1 mr-2 text-white" style="font-size: 1.3rem;"><i class="fas fa-cart-plus"></i></a>
-                {% block carttotal %}
-                {% endblock %}
+              <a href="{% url 'cart' %}" class="mt-1 mr-2 text-white" style="font-size: 1.3rem;"><i class="fa fa-cart-arrow-down text-dark" aria-hidden="true"></i></a>
+               
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ user.username }}
